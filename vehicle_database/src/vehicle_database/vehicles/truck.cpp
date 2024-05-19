@@ -9,12 +9,16 @@
 // 
 ///////////////////////////////////////////////////////////////////////////
 
-#include "vehicle_database/demo/vehicle_database_demo.h"
+#include "vehicle_database/vehicles/truck.h"
 #include <print>
 
-int main() {
+namespace apperoso {
 
-	std::println("Welcome to the Vehicle Database demo!");
+	PropertyStatus Truck::validateCommonProperty(VehiclePropertyToken /*propertyToken*/, std::string_view /*value*/) {
+		return PropertyStatus::success;
+	}
 
-	apperoso::runVehicleDatabaseDemo();
+	PropertyStatus Truck::validateSpecificProperty(VehiclePropertyToken /*propertyToken*/, std::string_view /*value*/) {
+		return PropertyStatus::success;
+	}
 }

@@ -32,6 +32,11 @@ namespace apperoso {
 		return static_cast<EnumT>(EnumT::enumSize);
 	}
 
+	template<SizedEnum EnumT>
+	constexpr std::size_t toIndex(EnumT value) {
+		return std::to_underlying(value);
+	}
+
 	// Range support...
 	template<SizedEnum EnumT>
 	constexpr inline auto enumRange() {

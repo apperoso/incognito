@@ -9,12 +9,8 @@
 // 
 ///////////////////////////////////////////////////////////////////////////
 
-#include "vehicle_database/demo/vehicle_database_demo.h"
-#include <print>
+namespace apperoso {
 
-int main() {
+	void runVehicleDatabaseDemo();
 
-	std::println("Welcome to the Vehicle Database demo!");
-
-	apperoso::runVehicleDatabaseDemo();
 }

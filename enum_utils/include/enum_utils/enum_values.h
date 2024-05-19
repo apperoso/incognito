@@ -50,9 +50,9 @@ namespace apperoso {
 
 	template<SizedEnum EnumT>
 	void printValues(EnumValues<EnumT> const& values) {
-		for (auto const [index, std::string] : std::views::enumerate(values))
+		for (auto const [index, value] : std::views::enumerate(values))
 		{
-			std::println("[{}] = [{}]", toString<EnumT>(index), std::string);
+			std::println("[{}] = [{}]", toString<EnumT>(index), value);
 		}
 	}
 

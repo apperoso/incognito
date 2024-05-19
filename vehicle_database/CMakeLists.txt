@@ -1,6 +1,10 @@
 add_executable(vehicle_database)
 
 target_sources(vehicle_database PUBLIC
+
+	"include/vehicle_database/demo/all_vehicles.h"
+	"include/vehicle_database/demo/vehicle_database_demo.h"
+
 	"include/vehicle_database/enums/bicycle_property_enum.h"
 	"include/vehicle_database/enums/car_property_enum.h"
 	"include/vehicle_database/enums/common_property_enum.h"
@@ -22,6 +26,21 @@ target_sources(vehicle_database PUBLIC
 	"include/vehicle_database/tokens/plane_property_token.h"
 	"include/vehicle_database/tokens/truck_property_token.h"
 	"include/vehicle_database/tokens/vehicle_token_factory.h"
+
+	"include/vehicle_database/vehicles/bicycle.h"
+	"include/vehicle_database/vehicles/car.h"
+	"include/vehicle_database/vehicles/plane.h"
+	"include/vehicle_database/vehicles/truck.h"
+	"include/vehicle_database/vehicles/vehicle.h"
+	"include/vehicle_database/vehicles/vehicle_definitions.h"
+	"include/vehicle_database/vehicles/vehicle_property_interface.h"
+
+	"src/vehicle_database/demo/vehicle_database_demo.cpp"
+
+	"src/vehicle_database/vehicles/bicycle.cpp"
+	"src/vehicle_database/vehicles/car.cpp"
+	"src/vehicle_database/vehicles/plane.cpp"
+	"src/vehicle_database/vehicles/truck.cpp"
 
 	"src/vehicle_database/main.cpp"
 )

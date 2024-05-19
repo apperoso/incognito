@@ -53,11 +53,22 @@ namespace apperoso {
 		using KeyType = KeyEnumT;
 		using PropertyTypes = std::tuple<PropertyEnumTs...>;
 
+		template<SizedEnum PropertyEnumT>
+			requires (tuple_contains_v<PropertyEnumT, PropertyTypes>)
+		static constexpr std::size_t keyIndexFor() {
+			return tuple_index_v<PropertyEnumT, PropertyTypes>;
+		}
+
+		template<SizedEnum PropertyEnumT>
+			requires (tuple_contains_v<PropertyEnumT, PropertyTypes>)
+		static constexpr KeyType keyFor() {
+			return static_cast<KeyType>(keyIndexFor<PropertyEnumT>());
+		}
+
 		template<SizedEnum auto propertyEnum>
 			requires (tuple_contains_v<decltype(propertyEnum), PropertyTypes>)
 		constexpr auto create() const noexcept {
-			constexpr auto keyIndex = tuple_index_v<decltype(propertyEnum), PropertyTypes>;
-			return PropertyTokenDataFactory<KeyEnumT, static_cast<KeyType>(keyIndex), propertyEnum>{}.create();
+			return PropertyTokenDataFactory<KeyEnumT, keyFor<decltype(propertyEnum)>(), propertyEnum>{}.create();
 		} 
 	};
 
