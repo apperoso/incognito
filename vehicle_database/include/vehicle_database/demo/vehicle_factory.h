@@ -9,8 +9,20 @@
 // 
 ///////////////////////////////////////////////////////////////////////////
 
+#pragma once
+
+#include "vehicle_database/demo/all_Vehicles.h"
+#include <vector>
+
 namespace apperoso {
 
-	void runVehicleDatabaseDemo();
+	using Bicycles = std::vector<Bicycle>;
+	using Cars = std::vector<Car>;
+	using Planes = std::vector<Plane>;
+	using Trucks = std::vector<Truck>;
 
+	Bicycles makeBicycles();
+	Cars makeCars();
+	Planes makePlanes();
+	Trucks makeTrucks();
 }

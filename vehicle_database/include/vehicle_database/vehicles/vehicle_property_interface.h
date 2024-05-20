@@ -27,13 +27,15 @@ namespace apperoso {
 	class VehiclePropertyInterface {
 		EnumValues<CommonPropertyEnum>		commonProperties_{};
 		EnumValues<SpecificPropertyEnumT>	specificProperties_{};
+		std::string name_;
 
 		PropertyStatus validateCommonProperty(VehiclePropertyToken propertyToken, std::string_view value);
 		PropertyStatus validateSpecificProperty(VehiclePropertyToken propertyToken, std::string_view value);
 
-		static constexpr auto name_ = enumStrings<VehicleTypeEnum>[vehicleTokenFactory.keyIndexFor<SpecificPropertyEnumT>()];
-
 	public:
+		VehiclePropertyInterface(std::string name) : name_{std::move(name)} {}
+		constexpr std::string name(this auto&& self) { return self.name_; }
+
 		PropertyStatus setProperty(this auto&& self, VehiclePropertyToken propertyToken, std::string_view value) {
 			auto status = PropertyStatus::success;
 
@@ -41,20 +43,20 @@ namespace apperoso {
 			case VehicleTypeEnum::common: 
 				if (status = self.validateCommonProperty(propertyToken, value); status == PropertyStatus::success) {
 					self.commonProperties_[propertyToken.propertyIndex()] = value;
-					std::println("[{}] common property [{}] set to [{}]", name_, propertyToken.propertyName(), value);
+					std::println("[{}] common property [{}] set to [{}]", self.name(), propertyToken.propertyName(), value);
 				}
 				else {
-					std::println("[{}] ERROR - could not set common property [{}] to [{}]", name_, propertyToken.propertyName(), value);
+					std::println("[{}] ERROR - could not set common property [{}] to [{}]", self.name(), propertyToken.propertyName(), value);
 				}
 				break;
 
 			case vehicleTokenFactory.keyFor<SpecificPropertyEnumT>():
 				if (status = self.validateSpecificProperty(propertyToken, value); status == PropertyStatus::success) {
 					self.specificProperties_[propertyToken.propertyIndex()] = value;
-					std::println("[{}] specific property [{}] set to [{}]", name_, propertyToken.propertyName(), value);
+					std::println("[{}] specific property [{}] set to [{}]", self.name(), propertyToken.propertyName(), value);
 				}
 				else {
-					std::println("[{}] ERROR - could not set specific property [{}] to [{}]", name_, propertyToken.propertyName(), value);
+					std::println("[{}] ERROR - could not set specific property [{}] to [{}]", self.name(), propertyToken.propertyName(), value);
 				}
 				break;
 			}
@@ -72,6 +74,21 @@ namespace apperoso {
 			}
 
 			return std::unexpected(PropertyStatus::invalidProperty);
+		}
+
+		VehiclePropertyStrings getPropertyStrings() const {
+			VehiclePropertyStrings propertyStrings;
+			propertyStrings.reserve(toIndex(CommonPropertyEnum::enumSize) + toIndex(SpecificPropertyEnumT::enumSize));
+
+			for (auto const [index, entry] : std::views::enumerate(commonProperties_) ) {
+				propertyStrings.emplace_back(toString<CommonPropertyEnum>(index), entry);
+			}
+
+			for (auto const [index, entry] : std::views::enumerate(specificProperties_)) {
+				propertyStrings.emplace_back(toString<SpecificPropertyEnumT>(index), entry);
+			}
+
+			return propertyStrings;
 		}
 	};
 }

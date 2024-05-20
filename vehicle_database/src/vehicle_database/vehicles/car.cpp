@@ -19,7 +19,7 @@ namespace apperoso {
 	}
 
 	PropertyStatus Car::validateSpecificProperty(VehiclePropertyToken propertyToken, std::string_view value) {
-		switch (static_cast<CarPropertyEnum>(propertyToken.propertyIndex())) {
+		switch (toEnum<CarPropertyEnum>(propertyToken.propertyIndex())) {
 		case CarPropertyEnum::door_count: return validateDoorCount(value);
 		}
 		return PropertyStatus::success;
@@ -29,7 +29,7 @@ namespace apperoso {
 	{
 		if (value == "3" || value == "5") { return PropertyStatus::success; }
 
-		std::println("[Car] [{}] is not a valid door count", value);
+		std::println("[{}] ERROR - [{}] is not a valid door count", name(), value);
 		return PropertyStatus::invalidValue;
 	}
 

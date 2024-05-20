@@ -3,7 +3,7 @@ add_executable(vehicle_database)
 target_sources(vehicle_database PUBLIC
 
 	"include/vehicle_database/demo/all_vehicles.h"
-	"include/vehicle_database/demo/vehicle_database_demo.h"
+	"include/vehicle_database/demo/demo.h"
 
 	"include/vehicle_database/enums/bicycle_property_enum.h"
 	"include/vehicle_database/enums/car_property_enum.h"
@@ -35,7 +35,7 @@ target_sources(vehicle_database PUBLIC
 	"include/vehicle_database/vehicles/vehicle_definitions.h"
 	"include/vehicle_database/vehicles/vehicle_property_interface.h"
 
-	"src/vehicle_database/demo/vehicle_database_demo.cpp"
+	"src/vehicle_database/demo/demo.cpp"
 
 	"src/vehicle_database/vehicles/bicycle.cpp"
 	"src/vehicle_database/vehicles/car.cpp"
@@ -43,7 +43,7 @@ target_sources(vehicle_database PUBLIC
 	"src/vehicle_database/vehicles/truck.cpp"
 
 	"src/vehicle_database/main.cpp"
-)
+ "src/vehicle_database/demo/vehicle_factory.cpp" "include/vehicle_database/demo/vehicle_factory.h")
 
 target_include_directories(vehicle_database PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
 

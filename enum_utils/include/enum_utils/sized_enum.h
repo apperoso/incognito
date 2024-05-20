@@ -24,12 +24,12 @@ namespace apperoso {
 	};
 
 	template<SizedEnum EnumT>
-	constexpr EnumT toSizedEnum(int value) {
+	constexpr EnumT toEnum(std::integral auto value) {
 		if (value >= 0 && value < std::to_underlying(EnumT::enumSize)) {
 			return static_cast<EnumT>(value);
 		}
 
-		return static_cast<EnumT>(EnumT::enumSize);
+		return EnumT::enumSize;
 	}
 
 	template<SizedEnum EnumT>
@@ -41,6 +41,6 @@ namespace apperoso {
 	template<SizedEnum EnumT>
 	constexpr inline auto enumRange() {
 		return std::views::iota(0, std::to_underlying(EnumT::enumSize))
-			| std::views::transform([](auto e) { return static_cast<EnumT>(e); });
+			| std::views::transform([](auto e) { return toEnum<EnumT>(e); });
 	};
 }

@@ -17,7 +17,8 @@ namespace apperoso {
 
 	class Truck : public VehiclePropertyInterface<TruckPropertyEnum>
 	{
-		friend class VehiclePropertyInterface<TruckPropertyEnum>;
+		friend class VehiclePropertyInterface;
+		using VehiclePropertyInterface::VehiclePropertyInterface;
 
 		PropertyStatus validateCommonProperty(VehiclePropertyToken propertyToken, std::string_view value);
 		PropertyStatus validateSpecificProperty(VehiclePropertyToken propertyToken, std::string_view value);

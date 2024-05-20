@@ -15,6 +15,7 @@
 #include "vehicle_database/tokens/vehicle_token_factory.h"
 #include <expected>
 #include <string>
+#include <vector>
 
 namespace apperoso {
 
@@ -27,5 +28,9 @@ namespace apperoso {
 	using PropertyResult = std::expected<std::string, PropertyStatus>;
 
 	using VehiclePropertyToken = PropertyToken<VehicleTypeEnum>;
+
+	// Using a vector rather than map to maintain the defined property order
+	using VehiclePropertyString = std::pair<std::string, std::string>;
+	using VehiclePropertyStrings = std::vector<VehiclePropertyString>;
 
 }

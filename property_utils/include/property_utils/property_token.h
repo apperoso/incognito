@@ -62,7 +62,7 @@ namespace apperoso {
 		template<SizedEnum PropertyEnumT>
 			requires (tuple_contains_v<PropertyEnumT, PropertyTypes>)
 		static constexpr KeyType keyFor() {
-			return static_cast<KeyType>(keyIndexFor<PropertyEnumT>());
+			return toEnum<KeyType>(keyIndexFor<PropertyEnumT>());
 		}
 
 		template<SizedEnum auto propertyEnum>
