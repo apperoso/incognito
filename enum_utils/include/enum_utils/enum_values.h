@@ -42,6 +42,9 @@ namespace apperoso {
 
 		ArrayType::reference operator[](std::size_t index) { return values_[index]; }
 		ArrayType::const_reference operator[](std::size_t index) const { return values_[index]; }
+		ArrayType::reference operator[](EnumT index) { return values_[toIndex(index)]; }
+		ArrayType::const_reference operator[](EnumT index) const { return values_[toIndex(index)]; }
+
 		ArrayType::iterator begin() noexcept { return values_.begin(); }
 		ArrayType::const_iterator begin() const noexcept { return values_.begin(); }
 		ArrayType::iterator end() noexcept { return values_.end(); }

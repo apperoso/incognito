@@ -20,7 +20,6 @@ namespace apperoso {
 	class Vehicle {
 		struct Concept {
 			virtual ~Concept() = default;
-			virtual std::string name() const = 0;
 			virtual PropertyStatus setProperty(VehiclePropertyToken propertyToken, std::string_view value) = 0;
 			virtual PropertyResult getProperty(VehiclePropertyToken propertyToken) const = 0;
 			virtual VehiclePropertyStrings getPropertyStrings() const = 0;
@@ -33,10 +32,6 @@ namespace apperoso {
 
 			std::unique_ptr<Concept> clone() const override {
 				return std::make_unique<Model>(*this);
-			}
-
-			std::string name() const override {
-				return vehicle_.name();
 			}
 
 			PropertyStatus setProperty(VehiclePropertyToken propertyToken, std::string_view value) override {
@@ -61,10 +56,6 @@ namespace apperoso {
 		Vehicle(VehicleT vehicle) : vehiclePtr_{ std::make_unique<Model<VehicleT>>(std::move(vehicle)) } {}
 
 		Vehicle(Vehicle const& vehicle) : vehiclePtr_{ vehicle.vehiclePtr_->clone() } {}
-
-		std::string name() const {
-			return vehiclePtr_->name();
-		}
 
 		PropertyStatus setProperty(VehiclePropertyToken propertyToken, std::string_view value) {
 			return vehiclePtr_->setProperty(propertyToken, value);

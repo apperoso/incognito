@@ -35,7 +35,7 @@ namespace apperoso {
 	}
 
 	void printVehicleDetails(Vehicle const& vehicle) {
-		std::println("\nVehicle: [{}]", vehicle.name());
+		std::println("\nVehicle:");
 		for (auto const& entry : vehicle.getPropertyStrings()) {
 			std::println("[{}] = [{}]", entry.first, entry.second);
 		}

@@ -19,6 +19,7 @@ namespace apperoso {
 	template<>
 	constexpr EnumStringArray<CommonPropertyEnum> enumStrings<CommonPropertyEnum> =
 	{
+		"name"sv,
 		"make"sv,
 		"model"sv,
 		"color"sv,

@@ -27,14 +27,13 @@ namespace apperoso {
 	class VehiclePropertyInterface {
 		EnumValues<CommonPropertyEnum>		commonProperties_{};
 		EnumValues<SpecificPropertyEnumT>	specificProperties_{};
-		std::string name_;
 
 		PropertyStatus validateCommonProperty(VehiclePropertyToken propertyToken, std::string_view value);
 		PropertyStatus validateSpecificProperty(VehiclePropertyToken propertyToken, std::string_view value);
 
 	public:
-		VehiclePropertyInterface(std::string name) : name_{std::move(name)} {}
-		constexpr std::string name(this auto&& self) { return self.name_; }
+		VehiclePropertyInterface(std::string name) { commonProperties_[CommonPropertyEnum::name] = name; }
+		constexpr std::string name(this auto&& self) { return self.commonProperties_[CommonPropertyEnum::name]; }
 
 		PropertyStatus setProperty(this auto&& self, VehiclePropertyToken propertyToken, std::string_view value) {
 			auto status = PropertyStatus::success;

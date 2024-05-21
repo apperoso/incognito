@@ -15,6 +15,7 @@
 
 namespace apperoso {
 
+	inline constexpr auto name = vehicleTokenFactory.create<CommonPropertyEnum::name>();
 	inline constexpr auto make = vehicleTokenFactory.create<CommonPropertyEnum::make>();
 	inline constexpr auto model = vehicleTokenFactory.create<CommonPropertyEnum::model>();
 	inline constexpr auto color = vehicleTokenFactory.create<CommonPropertyEnum::color>();
