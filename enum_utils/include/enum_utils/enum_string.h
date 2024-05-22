@@ -52,21 +52,4 @@ namespace apperoso {
 		return EnumT::enumSize;
 	}
 
-	// Prefix operator++ (to allow simple loops using enums)
-	template<SizedEnum EnumT>
-	EnumT& operator++(EnumT& e)
-	{
-		if (int val = std::to_underlying(e); 
-			val >= 0 && val < std::to_underlying(EnumT::enumSize))
-		{
-			e = EnumT{ val+1 };
-		}
-		else
-		{
-			e = EnumT{ 0 };
-		}
-
-		return e;
-	}
-
 }

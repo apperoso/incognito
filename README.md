@@ -1,12 +1,12 @@
 # Incognito
 
-Combining type erasure, CRTP and template metaprogramming to create an opaque token to access the properties of a collection of heterogeneous objects.
+Combining type erasure, CRTP, template metaprogramming and a sprinkling of C++23, to create an opaque token to access the properties of a collection of heterogeneous objects.
 
 ## Overview
 
 This project was created whilst testing various designs for modelling the properties of a collection of user interface widgets.
 
-The code has been made available in case the techniques prove useful in other projects.
+It is not intended to be a production quality library that will support multiple environments: the code has been made available in the hope that the techniques may be useful in other projects.
 
 The idea is to use a token to uniquely identify any property among a collection of objects. The token is then passed to a single API which can be used to read and write the properties of any object registered with the API.
 
@@ -112,4 +112,4 @@ car.setProperty(carStyle, "hatchback");
 
 ## Design
 
-For more detail on the design of Incognito, see the [design documenation](docs/design.md)
+For more detail on the design of Incognito, see the [design documenation](docs/README.md)
