@@ -62,7 +62,9 @@ constexpr auto create() const noexcept;
 ```
 
 `create()` is called by passing a [non-type template parameter](https://en.cppreference.com/w/cpp/language/template_parameters), `propertyEnum`, representing the property that the token will represent (for example, `CarPropertyEnum::fuel_type`).
+
 `keyFor()` is called with the type of `propertyEnum` to determine which key type to use. For example the key type for `CarPropertyEnum::fuel_type` is `VehicleTypeEnum::car` in the demo.
+
 These values are then used to instantiate `PropertyTokenDataFactory` and return the PropertyToken obtained from its `create()` function (below).
 
 ### PropertyTokenDataFactory
@@ -141,3 +143,72 @@ Public member functions are provided to access the underlying data:
 - `keyName()` returns the key type as a string_view, e.g. `"plane"sv`
 - `propertyIndex()` returns the `propertyEnum` index, e.g. `3` for `PlanePropertyEnum::range`
 - `propertyName()` returns the `propertyEnum` as a string_view, e.g. `"range"sv` for `PlanePropertyEnum::range`
+
+
+## property_traits.h
+
+This header provides some utilities used by property_token.h
+
+### tuple_contains
+
+Use this to determine if a [std::tuple](https://en.cppreference.com/w/cpp/utility/tuple) holds a particular type:
+
+```cpp
+using numberTypes = std::tuple<int, float>;
+
+static_assert(tuple_contains_v<int, numberTypes>);
+static_assert(tuple_contains_v<char, numberTypes>);	// Fails
+```
+
+The implementation is based on [this](https://stackoverflow.com/a/63332387)
+
+### tuple_index
+
+If a [std::tuple](https://en.cppreference.com/w/cpp/utility/tuple) holds a particular type, then it returns the index of the *first instance* of that type.
+
+If the tuple doesn't hold the type, it returns the size of the tuple (i.e. the index is equivalent to `end`)
+
+```cpp
+using myTypes = std::tuple<int, float, char, float>;
+
+static_assert(tuple_index_v<int, myTypes> == 0);
+static_assert(tuple_index_v<float, myTypes> == 1);
+static_assert(tuple_index_v<bool, myTypes> == 4);
+```
+
+The implementation is based on [this](https://stackoverflow.com/a/64606884)
+
+### is_specialization_of
+
+Check if a type is a specialization of a template.
+
+```cpp
+template<typename T>
+struct Foo {};
+
+template<>
+struct Foo<int> {};
+
+template<typename T>
+using FooInstance = Foo<T>;
+
+struct BarInstance {};
+
+template<typename T>
+using is_foo_type = is_specialization_of<T, Foo>;
+
+template<typename T>
+inline constexpr bool is_foo_type_v = is_specialization_of_v<T, Foo>;
+
+template<typename T>
+concept FooType = is_foo_type_v<T>;
+
+void fooTest(FooType auto foo) {};
+
+int main() {
+	fooTest(FooInstance<int>{});	// OK
+	fooTest(BarInstance{});			// Fail - constraints not satisfied
+}
+```
+
+The implementation is based on proposal [P2098R0](https://wg21.link/P2098R0)

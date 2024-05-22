@@ -18,7 +18,7 @@ The idea is to use a token to uniquely identify any property among a collection 
 
 The source code contains a demo project, vehicle database, to show how the property token is created and used.
 
-This section provides a basic overview. For a more detailed analysis read the [design documenation](docs/design.md)
+This section provides a basic overview. For a more detailed analysis read the [design documenation](docs/README.md)
 
 We start by defining four types of vehicle, each with its own set of properties:
 
