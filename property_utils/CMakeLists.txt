@@ -1,7 +1,6 @@
 add_library(property_utils INTERFACE)
 
 target_sources(property_utils INTERFACE
-	"include/property_utils/fixed_string.h"
 	"include/property_utils/property_token.h"
 	"include/property_utils/property_traits.h"
 )
