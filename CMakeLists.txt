@@ -33,6 +33,6 @@ add_subdirectory(vehicle_database)
 
 # Set the startup project for Visual Studio
 if (MSVC)
-	set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT vehicle_info)
+	set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT vehicle_database)
 endif()
 
