@@ -10,9 +10,11 @@ It is not intended to be a production quality library that will support multiple
 
 The idea is to use a token to uniquely identify any property among a collection of objects. The token is then passed to a single API which can be used to read and write the properties of any object registered with the API.
 
-The API is part of a type-erased class which encapsulates teh objects, providing value semantics and allowing them all to be stored in the same container.
+The API is part of a type-erased class which encapsulates the objects, providing value semantics and allowing them all to be stored in the same container.
 
 The idea is to use a token to uniquely identify any property among a collection of objects. The token is then passed to a single API which can be used to read and write the properties of any object registered with the API.
+
+**Note**: This code has been tested on Windows 11 using Visual Studio 2022 version 17.9.2. It contains C++23 features which may not be fully supported on other compilers.
 
 ## Usage Example: Vehicle Database
 
