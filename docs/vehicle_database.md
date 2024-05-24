@@ -154,7 +154,7 @@ vehicle.h contains the definition of class Vehicle.
 
 This class uses [type-erasure](https://www.youtube.com/watch?v=qn6OqefuH08) to store any vehicle class (Bicycle, Car, Plane, Truck) in the same object.
 
-It provides `setProperty` and `getProperty` functions that call into the stored vehicle object.
+It provides `setProperty()` and `getProperty()` functions that call into the stored vehicle object.
 
 It also implements a copy constructor, which is required for basic container support. The internal `clone()` function makes this functionality possible.
 
@@ -178,9 +178,9 @@ Planes makePlanes();
 Trucks makeTrucks();
 ```
 
-The `make` functions create a number of vehicles and set some of their properties.
+The `make()` functions create a number of vehicles and set some of their properties.
 
-Note that each [std::vector](https://en.cppreference.com/w/cpp/container/vector) holds a concrete vehicle type, and each `make` function returns a *different* type...
+Note that each [std::vector](https://en.cppreference.com/w/cpp/container/vector) holds a concrete vehicle type, and each `make()` function returns a *different* type...
 
 ### Demo.cpp
 
