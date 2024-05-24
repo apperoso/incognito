@@ -47,7 +47,7 @@ enum class TruckPropertyEnum   { capacity, length, height, laden_weight, wheel_c
 
 Note:
 - The VehicleTypeEnum will act as the key. We define "common" as a vehicle type so that it can be re-used for each vehicle. This is an implementation decision and doesn't need to be done this way!
-- The design uses SizedEnums to keep track of how many enums we have defined. The always have "enumSize" as their last member. A C++20 concept ensures this member exists.
+- The design uses SizedEnums to keep track of how many enums we have defined. They always have "enumSize" as their last member. A C++20 concept ensures this member exists.
 
 ### Enum Strings
 
